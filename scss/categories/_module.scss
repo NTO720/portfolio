@@ -1,0 +1,301 @@
+/* === Module サイト全体で再利用できるビジュアルパターン === */
+
+/* --- Block 複合モジュール --- */
+
+/* ロード画面 */
+.bl_load {
+  // full screen
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  background-color: $color-body-back;
+  &_inner {
+    // full screen
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    // center layout
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* hide show */
+
+// @keyframes fadeOut {
+//   0% {
+//     display: block;
+//     opacity: 1;
+//   }
+//   99% {
+//     display: block;
+//     opacity: 0;
+//   }
+//   100% {
+//     display: none;
+//     opacity: 0;
+//   }
+// }
+// @keyframes fadeIn {
+//   0% {
+//     display: none;
+//     opacity: 0;
+//   }
+//   50% {
+//     display: none;
+//     opacity: 0;
+//   }
+//   51% {
+//     display: block;
+//     opacity: 0;
+//   }
+//   100% {
+//     display: block;
+//     opacity: 1;
+//   }
+// }
+// .hide {
+//   // display: none;
+//   // opacity: 0;
+//   // visibility: hidden;
+//   animation: fadeOut 2s ease-in 0s forwards;
+// }
+// .show {
+//   // display: block;
+//   // opacity: 1;
+//   // visibility: visible;
+//   animation: fadeIn 4s ease-in 0s forwards;
+// }
+
+.hide {
+  transition: opacity 2s, visibility 2s;
+  opacity: 0;
+  visibility: hidden;
+}
+.show {
+  transition: opacity 2s 2s, visibility 2s 2s;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* load_logo */
+.bl_media {
+  display: flex;
+  align-items: center;
+  color: $color-font-head;
+  line-height: 1.4;
+  &_imgWrapper {
+    flex: 0 1 27.58333%;
+    margin-right: 3.33333%;
+    & > img,
+    svg {
+      width: 100%;
+    }
+  }
+  &_body {
+    flex: 1;
+    & > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &_ttl {
+    display: flex;
+    justify-content: space-between;
+    font-size: calc(60px + 20 * (100vw - 320px) / 704);
+    font-weight: bold;
+  }
+  &_txt {
+    display: flex;
+    justify-content: space-between;
+    font-size: calc(15px + 5 * (100vw - 320px) / 704);
+  }
+}
+@media screen and (max-width: 768px) {
+  .bl_media {
+    display: block;
+    padding: 0 30px;
+    &_imgWrapper {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+/* --- Element 単一モジュール --- */
+
+/* sound title */
+.el_lv1Heading {
+  padding: 30px 10px;
+  color: $color-font-head;
+  font-size: calc(40px + 60 * (100vw - 320px) / 704);
+  & > span {
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: calc(4px + 5 * (100vw - 320px) / 704);
+      left: 50%;
+      width: 150%;
+      height: 1px;
+      transform: translateX(-50%);
+      background-image: linear-gradient(
+        to right,
+        transparent,
+        currentColor 25%,
+        currentColor 75%,
+        transparent
+      );
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+/* title btn */
+.el_UnderBarBtn {
+  position: relative;
+  overflow: hidden;
+  color: $color-font-head;
+  text-decoration: none;
+  text-align: center;
+  &::after {
+    content: "";
+    /*絶対配置で線の位置を決める*/
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    /*線の形状*/
+    height: 1px;
+    width: 80%;
+    background-image: linear-gradient(
+      to right,
+      currentColor,
+      currentColor 1%,
+      transparent 1%,
+      transparent 3%,
+      currentColor 50%,
+      transparent 97%,
+      transparent 99%,
+      currentColor 99%
+    );
+    background-position: center;
+    background-repeat: no-repeat;
+    /*アニメーションの指定*/
+    transition: all 0.3s;
+    transform: scale(0, 1); /*X方向0、Y方向1*/
+    transform-origin: center top; /*上部中央基点*/
+  }
+  &:hover::after {
+    transform: scale(1, 1); /*X方向にスケール拡大*/
+  }
+}
+
+/*アイコン付き小ボタン*/
+.el_beforeIconBtn {
+  position: relative;
+  display: inline-block;
+  padding: 0.2em 0.3em;
+  color: $color-font;
+  background-color: $color-btn;
+  text-decoration: none;
+  transition: 0.25s;
+  &:focus,
+  &:hover {
+    background-color: $color-btn-hover;
+    color: $color-font-hover;
+    -webkit-animation: blink 0.7s ease-in-out infinite alternate;
+    animation: blink 0.7s ease-in-out infinite alternate;
+    @-webkit-keyframes blink {
+      0% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes blink {
+      0% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+  &::before {
+    display: inline-block;
+    margin-right: 0.5em;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+  }
+  &.el_beforeIconBtn__download::before {
+    content: "\f019";
+  }
+}
+
+/*セクション区切り線*/
+.border-section {
+  border-width: 0;
+  background-image: linear-gradient(to right, $color-boder, $color-boder),
+    linear-gradient(
+      to right,
+      $color-boder,
+      $color-boder 5px,
+      transparent 5px,
+      transparent 32px
+    ),
+    linear-gradient(
+      to right,
+      $color-boder,
+      $color-boder 3px,
+      transparent 3px,
+      transparent 8px,
+      $color-boder 8px,
+      $color-boder 11px,
+      transparent 11px,
+      transparent 32px
+    ),
+    linear-gradient(
+      to right,
+      $color-boder,
+      $color-boder 3px,
+      transparent 3px,
+      transparent 32px
+    );
+  background-size: 1px 1px, 32px 2px, 32px 3px, 32px 3px;
+  background-position: left top, left 1px, 13px 3px, 17px 8px;
+  background-repeat: repeat-x, repeat-x, repeat-x, repeat-x;
+  pointer-events: none;
+  height: 12px;
+}
+
+/* テキスト区切り線 */
+.border-text {
+  border-color: $color-boder-elem;
+  margin: 5px 0;
+}
+
+/* ホタル */
+#particles-js {
+  position: fixed; /*描画固定*/
+  z-index: -1; /*描画を一番下に*/
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #546467 0%, #182347 100%); /*背景色*/
+}
+
+#wrapper {
+  position: relative; /*描画を#particles-jsよりも上にするためposition:relative;を指定*/
+  z-index: 1; /*z-indexの数字を大きくすることで描画を#particles-jsよりも上に*/
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,161 @@
+/* === Layout サイト全体の共通したエリア === */
+
+/*--------------------------------
+ 文字
+---------------------------------*/
+.heading-primary {
+  font-size: 40px;
+  font-weight: normal;
+  line-height: 1;
+  margin-bottom: 15px;
+  letter-spacing: 0.05em;
+  text-shadow: 3px 3px 0 $color-font-bg;
+  display: inline-block;
+}
+
+.section-heading {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.section-lead {
+  text-align: left;
+  display: inline-block;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+/*--------------------------------
+ レイアウト
+---------------------------------*/
+.wrapper {
+  padding-top: 68px;
+  background: $color-body-bg;
+}
+
+.section {
+  padding: 60px 0;
+}
+
+.inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/*--------------------------------
+ヘッダー
+---------------------------------*/
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+/*--------------------------------
+ グローバルナビ
+---------------------------------*/
+.gnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+.gnav-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px 0;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+.gnav-item {
+  font-family: "Open sans", sans-serif;
+  font-size: 16px;
+  padding: 0 24px;
+  letter-spacing: 0.05em;
+}
+
+/*--------------------------------
+ フッター
+---------------------------------*/
+.footer {
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+.footer .inner {
+  padding: 30px;
+}
+
+.copyright {
+  font-size: 10px;
+  text-align: center;
+  color: $color-font;
+}
+
+.page-top {
+  font-size: 12px;
+  font-weight: bold;
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  background-color: $color-body;
+  margin: 0 40px;
+}
+
+/*media Queries 767
+----------------------------------------------------*/
+
+@media screen and (max-width: 767px) {
+  /* 文字 */
+  .section-heading {
+    margin-bottom: 10px;
+  }
+
+  .heading-primary {
+    font-size: 22px;
+  }
+
+  /* レイアウト */
+  .wrapper {
+    padding-top: 82px;
+  }
+
+  .section {
+    padding: 60px 0;
+  }
+
+  .section .inner {
+    padding: 0 15px;
+  }
+
+  /* ヘッダー */
+
+  .logo-title {
+    font-size: 28px;
+    letter-spacing: 0.16em;
+  }
+
+  .logo-subtitle {
+    font-size: 14px;
+  }
+
+  /* グローバルナビ */
+  .gnav {
+    padding: 15px 0;
+  }
+
+  .gnav-item {
+    font-size: 13px;
+    padding: 2px 15px;
+  }
+}

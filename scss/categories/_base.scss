@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+// カラー設定
+
+// ベースカラーに近づける
+@function b-mix($color, $percentage) {
+  @return mix($color-base, $color, $percentage);
+}
+
+// main color
+$color-base: #dad4bb;
+$color-main: #4e4b42;
+$color-main-light: b-mix($color-main, 91%); //cdc8b0
+$color-main-soft: b-mix($color-main, 73%); //b4af9a
+$color-main-dull: b-mix($color-main, 45.7%); //8e8a79
+$color-main-dark: b-mix($color-main, 14.8%); //635f54
+$color-main-black2: mix($color-main,#000, 60%); 
+$color-main-black1: mix($color-main,#000, 30%); 
+$color-accent: #c0513d;
+
+// buttons
+$color-btn: $color-main-soft;
+$color-btn-hover: $color-main;
+$color-btn-active: $color-main-dark;
+$color-btn-icon: $color-main;
+
+// fonts
+$color-font: $color-main;
+$color-font-bg: $color-main-soft;
+$color-font-hover: $color-base;
+$color-font-head: $color-base;
+$color-font-accent: $color-accent;
+$color-font-sub: $color-main-soft;
+
+// body
+$color-body: $color-base;
+$color-body-bg: $color-main-light;
+$color-body-head: $color-main;
+$color-body-elem: $color-main-soft;
+$color-body-load: $color-main-black2;
+$color-body-back: $color-main-black1;
+
+// border
+$color-boder: $color-main;
+$color-boder-bg: $color-main-dull;
+$color-boder-elem: $color-main-soft;
+
+/* リセット */
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+    "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", YuGothic,
+    "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  letter-spacing: 0.8px;
+  word-break: break-all;
+  color: $color-font;
+}
+
+a {
+  text-decoration: none;
+  color: #1ca9e3;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border-style: none;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.pc-only {
+  display: block;
+}
+
+.sp-only {
+  display: none;
+}
+
+.hover-action {
+  display: block;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.hover-action:hover {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-transform: translate(0, -4px);
+  transform: translate(0, -4px);
+  -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.12);
+}
+
+/*media Queries 767
+----------------------------------------------------*/
+
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .pc-only {
+    display: none;
+  }
+
+  .sp-only {
+    display: block;
+  }
+
+  .hover-action {
+    -webkit-transition: none;
+    transition: none;
+  }
+
+  .hover-action:hover {
+    -webkit-transition: none;
+    transition: none;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+svg {
+  fill: currentColor;
+}
